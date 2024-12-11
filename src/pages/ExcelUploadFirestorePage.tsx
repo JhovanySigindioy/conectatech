@@ -67,12 +67,14 @@ export const ExcelUploadFirestorePage: React.FC = () => {
                     type="file"
                     accept=".xlsx, .xls"
                     id="file-input"
-                    onChange={(e) => handleFileUpload(e, resetInput)} // Pasa resetInput
+                    onChange={
+                        (e) => handleFileUpload(e, resetInput)
+                    } 
                     className="hidden"
                 />
                 <label
                     htmlFor="file-input"
-                    className="w-full sm:w-auto bg-red-500 text-white font-medium py-2 px-4 rounded-lg shadow hover:bg-red-600 transition cursor-pointer text-center"
+                    className="w-full sm:w-auto bg-sky-400 text-white font-medium py-2 px-4 rounded-lg shadow hover:bg-sky-600 transition cursor-pointer text-center"
                 >
                     Seleccionar archivo Excel
                 </label>

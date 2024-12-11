@@ -23,6 +23,7 @@ export const useUploadFirestore = <T,>(
         e: React.ChangeEvent<HTMLInputElement>,
         resetInput: () => void
     ) => {
+        
         const file = e.target.files?.[0];
         if (file) {
             try {
@@ -45,6 +46,7 @@ export const useUploadFirestore = <T,>(
                 setJsonData(parsedData);
                 const newFormattedData = fnFormatData(parsedData);
                 setFormattedData(newFormattedData);
+                resetInput();
             } catch (error) {
                 Swal.fire({
                     icon: "error",
@@ -68,7 +70,7 @@ export const useUploadFirestore = <T,>(
             }
 
             Swal.fire({
-                title: "Cargando...",
+                title: "Subiendo información",
                 text: "Por favor espera mientras sube la información al servidor.",
                 allowOutsideClick: false,
                 allowEscapeKey: false,
@@ -83,6 +85,10 @@ export const useUploadFirestore = <T,>(
                 icon: "success",
                 title: "Éxito",
                 text: "Los contactos se subieron correctamente.",
+                didOpen: () => {
+                    const confirmButton = Swal.getConfirmButton();
+                    confirmButton!.style.backgroundColor = "#38bdf8";
+                }
             });
         } catch (error) {
             Swal.fire({

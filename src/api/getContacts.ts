@@ -20,7 +20,6 @@ export const getContacts = async (): Promise<Contact[]> => {
                 },
                 bossName: doc.data().bossName as string,
             }));
-            console.log(JSON.stringify(data, null, 2));
             return data;
         }
         return [];

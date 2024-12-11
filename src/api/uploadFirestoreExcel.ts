@@ -4,8 +4,6 @@ import { ContactNotId, ResourceTechNotId } from "@/types";
 
 export const uploadFirestore = async (jsonData: ContactNotId[] | ResourceTechNotId[], nameCollection: string): Promise<void> => {
 
-    console.log(jsonData,"_____",nameCollection);
-
     if (jsonData.length === 0) {
         throw new Error("No hay datos para subir.");
     }

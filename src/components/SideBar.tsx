@@ -11,7 +11,7 @@ export const SideBar: React.FC<SideBarProps> = React.memo(({ onClick }) => {
                 className="h-screen w-56 bg-gray-50"
                 onClick={(e) => e.stopPropagation()}
             >
-                <section className="flex justify-center items-center py-8">
+                <section title="Click aqui" className="flex justify-center items-center py-8 "  >
                     <img src="/logoE.svg" alt="Logo Sigi.dev" />
                 </section>
                 <hr />

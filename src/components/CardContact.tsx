@@ -4,9 +4,9 @@ import { CardContactProps } from "@/interface";
 
 export const CardContact: React.FC<CardContactProps> = React.memo(({ dataContact }) => {
     return (
-        <article className="text-sm flex flex-col gap-4 md:w-[45%] shadow-lg rounded-xl border bg-white border-gray-300 p-6 hover:shadow-xl transition-shadow mx-auto mb-4">
+        <article className="w-full text-sm flex flex-col gap-4 md:w-[45%] shadow-lg rounded-xl border bg-white border-gray-300 p-6 hover:shadow-xl transition-shadow fadeIn mb-4">
             <section>
-                <header className="mb-2">
+                <header className="mb-1">
                     <p className=" font-medium text-gray-500 uppercase tracking-wide">{dataContact.fullName}</p>
                     <h2 className="font-semibold text-gray-800 capitalize">{dataContact.position}</h2>
                 </header>
@@ -14,7 +14,7 @@ export const CardContact: React.FC<CardContactProps> = React.memo(({ dataContact
                     <div key={index} className="flex justify-between items-center py-2 border-b border-gray-200 last:border-0">
                         <div className="flex gap-2">
                             <span className="font-semibold">Tel:</span>
-                            <p className="text-gray-600" aria-label={`Número de teléfono ${contact}`}> {contact}</p>
+                            <p className="text-gray-600" > {contact}</p>
                         </div>
                         <div className="flex gap-6 items-center">
                             <a
@@ -38,12 +38,12 @@ export const CardContact: React.FC<CardContactProps> = React.memo(({ dataContact
                 </header>
                 <div className="grid grid-cols-2">
                     <div className="flex gap-2">
-                        <strong className="text-gray-700">Placa:</strong>
-                        <p className="text-gray-600 uppercase">{dataContact.vehicle.plate}</p>
+                        <strong className="text-gray-700 font-semibold">Vehículo:</strong>
+                        <p className="text-gray-600">{dataContact.vehicle.type}</p>
                     </div>
                     <div className="flex gap-2">
-                        <strong className="text-gray-700">Vehículo:</strong>
-                        <p className="text-gray-600">{dataContact.vehicle.type}</p>
+                        <strong className="text-gray-700 font-semibold">Placa:</strong>
+                        <p className="text-gray-600 uppercase">{dataContact.vehicle.plate}</p>
                     </div>
                 </div>
             </section>

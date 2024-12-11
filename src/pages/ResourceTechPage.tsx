@@ -4,6 +4,7 @@ import { CardResourceTech, InputBrowser } from "@/components";
 import { useInputBrowser, useFetchingData } from "@/customHooks";
 import { filterBySearchTerm, selectedPhrase } from "@/helpers";
 import { ResourceTech } from "@/interface";
+import { Spinner } from "@/components/Spinner";
 
 export const ResourceTechPage: React.FC = () => {
     const { inputBrowserValue, handleOnChange } = useInputBrowser();
@@ -28,13 +29,28 @@ export const ResourceTechPage: React.FC = () => {
 
             <InputBrowser id={"searchResourch"} placeholder={"Buscar solución"} value={inputBrowserValue} onChange={handleOnChange} />
             <div className="flex flex-col items-center px-2">
+                {isLoading && <Spinner />}
+
+                {error && <h1>Error: {error}</h1>}
+
+                {inputBrowserValue !== "" && filteredResources.length === 0 && (
+                    <div>
+                        <h1 className="text-xl text-red-600 mt-10 font-semibold fadeIn">No se encontraron resultados...</h1>
+                    </div>
+                )}
+
                 {
-                    isLoading ? (<h1>Cargando...</h1>)
+                    filteredResources.map((resource) => (
+                        <CardResourceTech key={resource.id} data={resource} />
+                    ))
+                }
+                {/* {
+                    isLoading ? (<Spinner/>)
                         : error ? (<h1>Error: {error}</h1>)
                             : filteredResources.map((resource) => (
                                 <CardResourceTech key={resource.id} data={resource} />
                             ))
-                }
+                } */}
             </div>
         </div>
     );
