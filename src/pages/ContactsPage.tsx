@@ -1,15 +1,12 @@
 import React, { useMemo } from "react";
-import { getContacts } from "@/api";
-import { CardContact, InputBrowser } from "@/components";
-import { Spinner } from "@/components/Spinner";
+import { CardContact, InputBrowser, Spinner } from "@/components";
 import { useFetchingData, useInputBrowser } from "@/customHooks";
 import { filterBySearchTerm } from "@/helpers";
 import { Contact } from "@/interface";
-import { getDataIndexedDB } from "@/localDB";
 
 export const ContactsPage: React.FC = () => {
     const { inputBrowserValue, handleOnChange } = useInputBrowser();
-    const { isLoading, error, data } = useFetchingData(getContacts);
+    const { isLoading, error, data } = useFetchingData<Contact>("contacts");
 
     const filteredContacts: Contact[] = useMemo(() => {
         if (!data) return [];
@@ -30,11 +27,11 @@ export const ContactsPage: React.FC = () => {
 
                 {inputBrowserValue === "" && !isLoading && <img src="/tecnico.svg" alt="Imagen de técnico" className="fadeIn" />}
 
-                    {inputBrowserValue !== "" && filteredContacts.length === 0 && (
-                        <div>
-                            <h1 className="text-xl text-red-600 mt-10 font-semibold fadeIn">No se encontraron resultados...</h1>
-                        </div>
-                    )}
+                {inputBrowserValue !== "" && filteredContacts.length === 0 && (
+                    <div>
+                        <h1 className="text-xl text-red-600 mt-10 font-semibold fadeIn">No se encontraron resultados...</h1>
+                    </div>
+                )}
 
                 {inputBrowserValue !== "" && filteredContacts.length > 0 && (
                     filteredContacts.map((contact, index) => (

@@ -4,7 +4,7 @@ import { IDBPDatabase, openDB } from "idb";
 const DB_NAME: string = "ConectaTechDB";
 const DB_VERSION: number = 1;
 
-export const initDB = async ():Promise<IDBPDatabase<Contact | ResourceTech>> => {
+export const initDB = async (): Promise<IDBPDatabase<Contact | ResourceTech>> => {
     return openDB(DB_NAME, DB_VERSION, {
         upgrade(db) {
             if (!db.objectStoreNames.contains("contacts")) {

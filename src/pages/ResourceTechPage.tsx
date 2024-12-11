@@ -1,5 +1,4 @@
 import React, { useMemo } from "react";
-import { getResources } from "@/api";
 import { CardResourceTech, InputBrowser } from "@/components";
 import { useInputBrowser, useFetchingData } from "@/customHooks";
 import { filterBySearchTerm, selectedPhrase } from "@/helpers";
@@ -8,7 +7,7 @@ import { Spinner } from "@/components/Spinner";
 
 export const ResourceTechPage: React.FC = () => {
     const { inputBrowserValue, handleOnChange } = useInputBrowser();
-    const { isLoading, error, data } = useFetchingData(getResources);
+    const { isLoading, error, data } = useFetchingData<ResourceTech>("resources");
 
     const filteredResources: ResourceTech[] = useMemo(() => {
         if (!data) return [];
@@ -26,7 +25,6 @@ export const ResourceTechPage: React.FC = () => {
             <h2 className="text-center text-xl md:text-2xl font-semibold bg-gradient-to-r from-sky-500 to-indigo-700 bg-clip-text text-transparent">
                 {phraseSelected}
             </h2>
-
             <InputBrowser id={"searchResourch"} placeholder={"Buscar solución"} value={inputBrowserValue} onChange={handleOnChange} />
             <div className="flex flex-col items-center px-2">
                 {isLoading && <Spinner />}
@@ -44,13 +42,6 @@ export const ResourceTechPage: React.FC = () => {
                         <CardResourceTech key={resource.id} data={resource} />
                     ))
                 }
-                {/* {
-                    isLoading ? (<Spinner/>)
-                        : error ? (<h1>Error: {error}</h1>)
-                            : filteredResources.map((resource) => (
-                                <CardResourceTech key={resource.id} data={resource} />
-                            ))
-                } */}
             </div>
         </div>
     );

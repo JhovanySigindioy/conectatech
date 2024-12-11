@@ -1,4 +1,3 @@
-export * from "./getContacts";
-export * from "./getResources";
+export * from "./getDataFromFirestore";
 export * from "./firebaseConection";
 export * from "./uploadFirestoreExcel";
