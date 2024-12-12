@@ -1,9 +1,10 @@
 import React from "react";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { IoIosMenu } from "react-icons/io";
 import { IoMdClose } from "react-icons/io";
 import { SideBar } from "./SideBar";
 import { NavBarProps } from "@/interface";
+import { clearStores, } from "@/indexedDB/clearStores";
 
 export const NavBar: React.FC<NavBarProps> = React.memo(({ toggleMenu, isOpen }) => {
 
@@ -28,14 +29,19 @@ export const NavBar: React.FC<NavBarProps> = React.memo(({ toggleMenu, isOpen })
 
                 {/* Menú para dispositivos grandes */}
                 <ul
-                    className={`hidden md:gap-8 md:flex`}
+                    className={`hidden md:gap-4 md:flex text-sm`}
                 >
-                   <li className="border-b-2 border-b-transparent hover:border-sky-500 text-gray-500 hover:text-sky-500   hover:scale-105 transition-all duration-200">
-                        <Link to="contacts" className="" >Contactos</Link>
+                    <li className="border-b-2 border-b-transparent hover:border-sky-500 text-gray-500 hover:text-sky-500   hover:scale-105 transition-all duration-200">
+                        <Link to="contacts" >Contactos</Link>
                     </li>
                     <li className="border-b-2 border-b-transparent hover:border-sky-500 text-gray-500 hover:text-sky-500   hover:scale-105 transition-all duration-200">
-                        <Link to="resources" className="text-gray-500 hover:text-pretty hover:text-sky-500">Soporte Técnico</Link>
+                        <Link to="resources">Soporte Técnico</Link>
                     </li>
+                    <button
+                        onClick={() => clearStores(["contacts", "resources"])}
+                        className="border-b-2 border-b-transparent hover:border-sky-500 text-gray-500 hover:text-sky-500   hover:scale-105 transition-all duration-200">
+                        Actualizar DB
+                    </button>
                 </ul>
             </div>
 

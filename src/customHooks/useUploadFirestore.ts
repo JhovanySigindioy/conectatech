@@ -37,7 +37,7 @@ export const useUploadFirestore = <T,>(
                     Swal.fire({
                         icon: "error",
                         title: "Error de Validación",
-                        text: `El archivo no cumple con los campos requeridos para la colección ${collection}.`,
+                        text: `El archivo no cumple con los campos requeridos`,
                     });
                     resetInput(); // Resetea el input
                     return;

@@ -1,3 +1,4 @@
+import { clearStores } from "@/indexedDB/clearStores";
 import React from "react";
 import { Link } from "react-router";
 export interface SideBarProps {
@@ -26,6 +27,13 @@ export const SideBar: React.FC<SideBarProps> = React.memo(({ onClick }) => {
                             <Link to="resources" onClick={onClick} className="block p-2 text-gray-900 hover:bg-blue-100 hover:text-black rounded transition">
                                 Soporte Técnico
                             </Link>
+                        </li>
+                        <li className="px-1">
+                            <button
+                                onClick={() => clearStores(["contacts", "resources"])}
+                                className="block p-2 text-gray-900 hover:bg-blue-100 hover:text-black rounded transition">
+                                Actualizar DB
+                            </button>
                         </li>
                     </ul>
                 </section>

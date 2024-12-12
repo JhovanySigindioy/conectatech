@@ -9,10 +9,6 @@ export const useFetchingData = <T>(nameCollection: string) => {
     const [data, setData] = useState<T[] | null>(null);
 
     useEffect(() => {
-
-        setInterval(() => {
-
-        }, 300000);
         const fetchResources = async () => {
             if (isLoading) return; // Evita llamadas concurrentes
             setIsLoading(true);

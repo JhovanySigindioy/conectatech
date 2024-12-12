@@ -11,7 +11,7 @@ export const initDB = async (): Promise<IDBPDatabase<Contact | ResourceTech>> =>
                 db.createObjectStore("contacts", { keyPath: "id" });
             }
             if (!db.objectStoreNames.contains("resources")) {
-                db.createObjectStore("resources", { keyPath: "id" });
+                db.createObjectStore("resources", { keyPath: "id" });   
             }
         }
     });
