@@ -8,7 +8,7 @@ export const saveDataToIndexedDB = async <T>(storeName: string, data: T[] ): Pro
         data.forEach((item) => transaction.store.put(item));
         await transaction.done;
     } catch (error) {
-        console.error("Error al guardar información en la base de datos, local", error);
+       
         throw error;
     }
 }

@@ -45,7 +45,7 @@ export const clearStores = async (storesToClear: string[]): Promise<string> => {
         });
         return "ok"
     } catch (error) {
-        console.error("Error al actualizar la base de datos:", error);
+   
         Swal.fire({
             title: "Error al actualizar la base de datos",
             text: "Por favor, vuelve a intentarlo más tarde.",

@@ -1,5 +1,4 @@
 import { getDataFromFirestore } from "@/api";
-import { checkData } from "@/api/checkData";
 import { getDataFromIndexedDB, saveDataToIndexedDB } from "@/indexedDB";
 import { useEffect, useState } from "react";
 
@@ -14,7 +13,6 @@ export const useFetchingData = <T>(nameCollection: string) => {
             setIsLoading(true);
             setError(null);
             try {
-                checkData();
                 // Primero intenta obtener los datos desde IndexedDB
                 let dataAsync = await getDataFromIndexedDB<T>(nameCollection);
 
