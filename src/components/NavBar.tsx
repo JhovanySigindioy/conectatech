@@ -28,9 +28,7 @@ export const NavBar: React.FC<NavBarProps> = React.memo(({ toggleMenu, isOpen })
                 </div>
 
                 {/* Menú para dispositivos grandes */}
-                <ul
-                    className={`hidden md:gap-4 md:flex text-sm`}
-                >
+                <ul className={`hidden md:gap-4 md:flex text-sm items-center `}>
                     <li className="border-b-2 border-b-transparent hover:border-sky-500 text-gray-500 hover:text-sky-500   hover:scale-105 transition-all duration-200">
                         <Link to="contacts" >Contactos</Link>
                     </li>
@@ -39,7 +37,7 @@ export const NavBar: React.FC<NavBarProps> = React.memo(({ toggleMenu, isOpen })
                     </li>
                     <button
                         onClick={() => clearStores(["contacts", "resources"])}
-                        className="border-b-2 border-b-transparent hover:border-sky-500 text-gray-500 hover:text-sky-500   hover:scale-105 transition-all duration-200">
+                        className="block p-2 text-white bg-sky-400 hover:bg-sky-600 rounded transition">
                         Actualizar DB
                     </button>
                 </ul>
