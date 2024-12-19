@@ -1,5 +1,4 @@
 import { openDB } from "idb";
-import debounce from "lodash.debounce";
 import { getDataFromFirestore } from "@/api";
 
 

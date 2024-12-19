@@ -10,21 +10,15 @@ export const useInputBrowser = () => {
         setInputBrowserValue(e.target.value);
     }, []);
 
-    const debouncedLog = useCallback(
+    const debounced = useCallback(
         debounce((value: string) => {
             setDebouncedValue(value);
-        }, 300), 
-        []
-    );
+        }, 300), []);
 
-    
     useEffect(() => {
-        debouncedLog(inputBrowserValue);
-    
-        return () => {
-            debouncedLog.cancel();
-        };
-    }, [inputBrowserValue, debouncedLog]);
+        debounced(inputBrowserValue);
+        return () => debounced.cancel();
+    }, [inputBrowserValue]);
 
     return {
         inputBrowserValue,
