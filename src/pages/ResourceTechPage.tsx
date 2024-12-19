@@ -6,17 +6,17 @@ import { ResourceTech } from "@/interface";
 import { Spinner } from "@/components/Spinner";
 
 export const ResourceTechPage: React.FC = () => {
-    const { inputBrowserValue, handleOnChange } = useInputBrowser();
+    const { debouncedValue, inputBrowserValue, handleOnChange } = useInputBrowser();
     const { isLoading, error, data } = useFetchingData<ResourceTech>("resources");
 
     const filteredResources: ResourceTech[] = useMemo(() => {
         if (!data) return [];
-        return filterBySearchTerm(inputBrowserValue, data, [
+        return filterBySearchTerm(debouncedValue, data, [
             (resource) => resource.title,
             (resource) => resource.detail,
         ]);
 
-    }, [inputBrowserValue, data]);
+    }, [debouncedValue, data]);
 
     const phraseSelected: string = useMemo(() => { return selectedPhrase() }, []);
 
@@ -31,7 +31,7 @@ export const ResourceTechPage: React.FC = () => {
 
                 {error && <h1>Error: {error}</h1>}
 
-                {inputBrowserValue !== "" && filteredResources.length === 0 && (
+                {debouncedValue !== "" && filteredResources.length === 0 && (
                     <div>
                         <h1 className="text-xl text-red-600 mt-10 font-semibold fadeIn">No se encontraron resultados...</h1>
                     </div>

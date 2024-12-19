@@ -5,17 +5,16 @@ import { filterBySearchTerm } from "@/helpers";
 import { Contact } from "@/interface";
 
 export const ContactsPage: React.FC = () => {
-    const { inputBrowserValue, handleOnChange } = useInputBrowser();
+    const { debouncedValue, inputBrowserValue, handleOnChange } = useInputBrowser();
     const { isLoading, error, data } = useFetchingData<Contact>("contacts");
 
     const filteredContacts: Contact[] = useMemo(() => {
         if (!data) return [];
-        return filterBySearchTerm(inputBrowserValue, data, [
+        return filterBySearchTerm(debouncedValue, data, [
             (contact) => contact.fullName,
             (contact) => contact.vehicle.plate,
         ]);
-
-    }, [inputBrowserValue, data]);
+    }, [debouncedValue, data]); 
 
     return (
         <div className="fadeIn">
@@ -25,15 +24,15 @@ export const ContactsPage: React.FC = () => {
 
                 {error && <h1>Error: {error}</h1>}
 
-                {inputBrowserValue === "" && !isLoading && <img src="/tecnico.svg" alt="Imagen de técnico" className="fadeIn" />}
+                {debouncedValue === "" && !isLoading && <img src="/tecnico.svg" alt="Imagen de técnico" className="fadeIn" />}
 
-                {inputBrowserValue !== "" && filteredContacts.length === 0 && (
+                {debouncedValue !== "" && filteredContacts.length === 0 && (
                     <div>
                         <h1 className="text-xl text-red-600 mt-10 font-semibold fadeIn">No se encontraron resultados...</h1>
                     </div>
                 )}
 
-                {inputBrowserValue !== "" && filteredContacts.length > 0 && (
+                {debouncedValue !== "" && filteredContacts.length > 0 && (
                     filteredContacts.map((contact, index) => (
                         <CardContact key={index} dataContact={contact} />
                     ))
