@@ -1,4 +1,4 @@
-import { addDoc, collection, getFirestore } from "firebase/firestore";
+import { addDoc, collection, getFirestore, serverTimestamp } from "firebase/firestore";
 import { appFirebase } from "./firebaseConection";
 import { ContactNotId, ResourceTechNotId } from "@/types";
 
@@ -11,7 +11,15 @@ export const uploadFirestore = async (jsonData: ContactNotId[] | ResourceTechNot
     const db = getFirestore(appFirebase);
     const contactsCollection = collection(db, nameCollection);
 
-    for (const data of jsonData) {
+    // Modificamos cada objeto para agregar el campo createAt
+    const dataWithTimestamp = jsonData.map((data) => ({
+        ...data,
+        createAt: serverTimestamp(), // Agregar la fecha del cliente o usar serverTimestamp si lo prefieres
+    }));
+
+    // Subimos los datos con el campo createAt ya agregado
+    for (const data of dataWithTimestamp) {
+        console.log(data);  
         await addDoc(contactsCollection, data);
     }
 };
